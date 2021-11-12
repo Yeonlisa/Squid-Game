@@ -73,6 +73,10 @@ class Player {
 		this.playerInfo.velocity = .03;
 	}
 
+	stop() {
+		gsap.to(this.playerInfo, {velocity: 0, duration: .1})
+	}
+
 	update() {
 		this.playerInfo.positionX -= this.playerInfo.velocity;
 		this.player.position.x = this.playerInfo.positionX;
@@ -101,3 +105,15 @@ function onWindowResize() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 
 }
+
+window.addEventListener('keydown', (e) => {
+	if(e.key === "ArrowLeft") {
+		player.run();
+	}
+})
+
+window.addEventListener('keyup', (e) => {
+	if(e.key === "ArrowLeft") {
+		player.stop();
+	}
+})
